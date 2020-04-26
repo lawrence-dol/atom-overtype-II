@@ -1,8 +1,7 @@
 let CompositeDisposable     = require('atom').CompositeDisposable
 ,   actions                 = require('./actions')
-,   pkg                     = require('../package.json');
-
-let action, cmd;
+,   config                  = require('./config.coffee')
+,   package                 = require('../package.json');
 
 let OvertypeMode = (function() {
     let conFncName          = [ 'debug', 'log', 'info', 'warn', 'error' ];
@@ -38,13 +37,18 @@ let OvertypeMode = (function() {
         this.onType = this.onType.bind(this);
         }
 
+    for (let cmd in actions) {
+        let action = actions[cmd];
+        OvertypeMode.prototype[cmd] = action;
+        }
+
     OvertypeMode.prototype.logLevel     = 4;
     OvertypeMode.prototype.levelNames   = [];
     OvertypeMode.prototype.statusBar    = null;
     OvertypeMode.prototype.minComplete  = atom.config.get('autocomplete-plus.minimumWordLength');
     OvertypeMode.prototype.cmds         = new CompositeDisposable();
     OvertypeMode.prototype.events       = new CompositeDisposable();
-    OvertypeMode.prototype.config       = require('./config.coffee');
+    OvertypeMode.prototype.config       = config;
     OvertypeMode.prototype.caretClass   = 'overtype-cursor';
     OvertypeMode.prototype.enabledEd    = new Set();
 
@@ -86,7 +90,7 @@ let OvertypeMode = (function() {
         if (level == null) {
             level = 0;
             }
-        msg = [pkg.name, ':', Date.now(), ': ', theMsg].join('');
+        msg = [package.name, ':', Date.now(), ': ', theMsg].join('');
         if ((level === 4) || this.cfg('Package.debug')) {
             console[conFncName[level]](msg);
             }
@@ -197,12 +201,12 @@ let OvertypeMode = (function() {
         var cmd, keyPath, method, ref, schema;
 
         keyPath = 'Package.notificationLevel';
-        schema = atom.config.getSchema([pkg.name, keyPath].join('.'));
+        schema = atom.config.getSchema([package.name, keyPath].join('.'));
         OvertypeMode.levelNames = schema["enum"];
         this.levelNames = schema["enum"];
         this.logLevel = schema["enum"].indexOf(this.cfg(keyPath));
         this.log('activate::starts');
-        this.events.add(atom.config.onDidChange(pkg.name, (function(_this) {
+        this.events.add(atom.config.onDidChange(package.name, (function(_this) {
             return function(arg) {
                 var newValue, oldValue, option;
                 oldValue = arg.oldValue, newValue = arg.newValue;
@@ -294,7 +298,7 @@ let OvertypeMode = (function() {
         };
 
     OvertypeMode.prototype.cfg = function(key) {
-        return atom.config.get([pkg.name, key].join('.'));
+        return atom.config.get([package.name, key].join('.'));
         };
 
     OvertypeMode.prototype.activeEditor = function() {
@@ -592,11 +596,6 @@ let OvertypeMode = (function() {
         };
 
     return OvertypeMode;
-    })();
-
-for (cmd in actions) {
-    action = actions[cmd];
-    OvertypeMode.prototype[cmd] = action;
-    }
+    }());
 
 module.exports = new OvertypeMode();
