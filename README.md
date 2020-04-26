@@ -21,4 +21,4 @@ existing line structure. In overtype mode this package tries to avoid making cha
 Contributions must be JavaScript and follow the general style of the existing code, **particularly the indentation of
 closing braces to the same level as the block it terminates**.
 
-Refer to the [Atom API](https://atom.io/docs/api/v1.35.1/TextEditor) for details about interacting with Atom.
+Refer to the [Atom API](https://atom.io/docs/api/) for details about interacting with Atom.
