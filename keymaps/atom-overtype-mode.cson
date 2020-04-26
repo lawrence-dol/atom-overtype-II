@@ -1,0 +1,26 @@
+'.platform-darwin atom-text-editor:not([mini])':
+    'cmd-shift-delete'                  : 'overtype-mode:toggle'
+    backspace                           : 'overtype-mode:backspace'
+    delete                              : 'overtype-mode:delete'
+    'cmd-v'                             : 'overtype-mode:paste'
+    'cmd-shift-v'                       : 'overtype-mode:pasteSpecial'
+    'cmd-backspace'                     : 'overtype-mode:backspace2col0'
+    'cmd-delete'                        : 'overtype-mode:backspace2lastcol'
+
+'.platform-win32 atom-text-editor:not([mini])':
+    insert                              : 'overtype-mode:toggle'
+    backspace                           : 'overtype-mode:backspace'
+    delete                              : 'overtype-mode:delete'
+    'ctrl-v'                            : 'overtype-mode:paste'
+    'ctrl-shift-v'                      : 'overtype-mode:pasteSpecial'
+    'ctrl-backspace'                    : 'overtype-mode:backspace2col0'
+    'ctrl-delete'                       : 'overtype-mode:backspace2lastcol'
+
+'.platform-linux atom-text-editor:not([mini])':
+    insert                              : 'overtype-mode:toggle'
+    backspace                           : 'overtype-mode:backspace'
+    delete                              : 'overtype-mode:delete'
+    'ctrl-v'                            : 'overtype-mode:paste'
+    'ctrl-shift-v'                      : 'overtype-mode:pasteSpecial'
+    'ctrl-backspace'                    : 'overtype-mode:backspace2col0'
+    'ctrl-delete'                       : 'overtype-mode:backspace2lastcol'

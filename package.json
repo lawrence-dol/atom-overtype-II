@@ -1,0 +1,19 @@
+{
+"name"                                  : "overtype-ii",
+"main"                                  : "./code/main",
+"version"                               : "1.0.0",
+"description"                           : "Provides overtype mode for Atom, forked from the abandoned Atom Overtype Mode",
+"activationCommands"                    : {},
+"repository"                            : "https://github.com/lawrence-dol/atom-overtype-II.git",
+"license"                               : "MIT",
+"consumedServices": {
+    "status-bar": {
+        "versions": {
+            "^1.0.0"                    : "consumeStatusBar"
+            }
+        }
+    },
+"engines"                               : {
+    "atom": ">=1.13 <2.0.0"
+    }
+}

@@ -1,0 +1,35 @@
+@import 'syntax-variables';
+@import 'ui-variables';
+
+atom-text-editor.overtype-cursor.editor .cursors .cursor {
+    opacity                             : 1;
+    color                               : transparent;
+    border                              : 1px solid @syntax-cursor-color;
+    }
+
+atom-text-editor.overtype-cursor.editor .cursors.blink-off .cursor {
+    border                              : none;
+    }
+
+atom-text-editor[mini]:not(.is-focused).editor .cursors .cursor {
+    display                             : none;
+    }
+
+.hide-indicator {
+    display                             : none;
+    }
+
+.mode-insert {
+    background-color                    : @tab-bar-background-color;
+    color                               : @text-color;
+    border                              : none;
+    padding                             : 0 0.5em;
+    }
+
+.mode-overwrite {
+    color                               : @tab-bar-background-color;
+    background-color                    : @text-color;
+    border                              : none;
+    border-radius                       : 5px;
+    padding                             : 0 0.5em;
+    }
